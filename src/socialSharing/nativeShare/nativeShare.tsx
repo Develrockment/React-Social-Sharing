@@ -5,5 +5,18 @@ type Props = {
 };
 
 export default function NativeShare({ url, title, text }: Props): JSX.Element {
-   return <p>Native Share</p>;
+   const handleNativeShare = () => {
+      navigator
+         .share({
+            title,
+            text,
+            url,
+         })
+         .then(() => {
+            console.log("Share Successful");
+         })
+         .catch(console.error);
+   };
+
+   return <button onClick={handleNativeShare}>Native Share</button>;
 }
