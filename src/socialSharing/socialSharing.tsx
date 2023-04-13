@@ -13,16 +13,17 @@ export default function SocialSharing({
    title,
    text,
 }: Props): JSX.Element {
-   const [supportNativeSharing, setSupportNativeSharing] = useState<
-      false | true | "loading"
-   >("loading");
+   const supportNativeSharing = "share" in navigator;
+   //    const [supportNativeSharing, setSupportNativeSharing] = useState<
+   //       false | true | "loading"
+   //    >("loading");
 
-   useEffect(() => {
-      if ("share" in navigator) setSupportNativeSharing(true);
-      else setSupportNativeSharing(false);
-   }, []);
+   //    useEffect(() => {
+   //       if ("share" in navigator) setSupportNativeSharing(true);
+   //       else setSupportNativeSharing(false);
+   //    }, []);
 
-   if (supportNativeSharing === "loading") return <p>Loading...</p>;
+   //    if (supportNativeSharing === "loading") return <p>Loading...</p>;
    if (supportNativeSharing)
       return <NativeShare url={url} title={title} text={text} />;
    else return <ReactShare url={url} title={title} text={text} />;
